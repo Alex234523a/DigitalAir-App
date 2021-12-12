@@ -1,9 +1,10 @@
 <RCC>
     <qresource prefix="/myresources">
         <file alias="flam.png">images/flamme.PNG</file>
-        <file alias="no-connection.png">images/icon-signal-0.png</file>
-        <file alias="low-connection.png">images/icon-signal-1.png</file>
-        <file alias="ok-connection.png">images/icon-signal-2.png</file>
-        <file alias="good-connection.png">images/icon-signal-3.png</file>
+        <file alias="no-connection">images/icon_signal_0.png</file>
+        <file alias="weak-connection">images/icon_signal_1.png</file>
+        <file alias="fair-connection">images/icon_signal_2.png</file>
+        <file alias="good-connection">images/icon_signal_3.png</file>
+        <file alias="excellent-connection">images/icon_signal_4.png</file>
     </qresource>
 </RCC>

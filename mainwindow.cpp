@@ -25,6 +25,7 @@ MainWindow::MainWindow(QWidget *parent)
     ui->setupUi(this);
 
     countPortErrors = 0;
+    timeLeft = 0;
 
     connect(outgoing, &SerialPort::dataReadytoGet, this, &MainWindow::updateLCD);
     connect(outgoing, &SerialPort::connectionError, this, &MainWindow::connectError);
@@ -36,7 +37,7 @@ MainWindow::MainWindow(QWidget *parent)
 
     ui->pressureLCD->display("--");
     ui->tempALCD->display("--");
-    ui->signalStrength->setPixmap(QPixmap(":/myresources/no-connection.png"));
+    ui->signalStrength->setPixmap(QPixmap(":/myresources/no-connection"));
 }
 
 MainWindow::~MainWindow()
@@ -56,13 +57,19 @@ void MainWindow::updateLCD()
 {
     ui->pressureLCD->display(outgoing->getPressure());
     ui->tempALCD->display(outgoing->getTempOut());
-
     setSignalStrengthImg(outgoing->getSignalPower());
+    if (outgoing->getDiff() < 0) {
+        timeLeft = (VOLUME_OF_BOTTLE_LITRES * outgoing->getPressure()) / FAKTOR;
+        ui->timeLeftN_label->setNum(timeLeft);
+        // Typ not right from uint16_t to int
+        // This will be executed once!
+    }
+    // Else to calculate time left
 }
 
 void MainWindow::connectError()
 {
-    ui->signalStrength->setPixmap(QPixmap(":/myresources/no-connection.png"));
+    ui->signalStrength->setPixmap(QPixmap(":/myresources/no-connection"));
     statusBar()->showMessage(tr(CONNECTION_ERROR_MESSAGE), 3500);
     QTimer::singleShot(4000, this, &MainWindow::slotReboot);
 }
@@ -86,12 +93,14 @@ void MainWindow::createActions()
 void MainWindow::setSignalStrengthImg(uint8_t signalPower)
 {
     if (signalPower < 50) {
-        ui->signalStrength->setPixmap(QPixmap(":/myresources/good-connection.png"));
+        ui->signalStrength->setPixmap(QPixmap(":/myresources/excellent-connection"));
     } else if (signalPower < 60) {
-        ui->signalStrength->setPixmap(QPixmap(":/myresources/ok-connection.png"));
-    } else {
-        ui->signalStrength->setPixmap(QPixmap(":/myresources/low-connection.png"));
-        statusBar()->showMessage("Funkverbindung schwach", 2000);
+        ui->signalStrength->setPixmap(QPixmap(":/myresources/good-connection"));
+    } else if (signalPower < 70) {
+        ui->signalStrength->setPixmap(QPixmap(":/myresources/fair-connection"));
+    }else {
+        ui->signalStrength->setPixmap(QPixmap(":/myresources/weak-connection"));
+        //statusBar()->showMessage("Funkverbindung schwach", 2000);
     }
 }
 

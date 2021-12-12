@@ -17,6 +17,8 @@
 #include <QAction>
 #include <QShortcut>
 
+#define FAKTOR 60
+#define VOLUME_OF_BOTTLE_LITRES 6
 #define CONNECTION_ERROR_MESSAGE "Connection-Error: App wird automatisch neugestartet."
 #define UNKNOWN_ERROR_MESSAGE "Unknown-Error: Fehler beim Öffnen des Ports. Versuche \
                                den Port ernuet zu öffnen."
@@ -48,6 +50,7 @@ private:
     void createActions();
     void setSignalStrengthImg(uint8_t);
     uint8_t countPortErrors;
+    uint16_t timeLeft;
 };
 
 #endif // MAINWINDOW_H
