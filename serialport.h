@@ -113,6 +113,7 @@ public:
     uint8_t getSignalPower() { return sensordata.signalPower; }
     uint8_t getTempOut()     { return sensordata.tempOut; }
     uint8_t getTempIn()      { return sensordata.tempIn; }
+    int16_t getDiff()        { return error; }
 
 private slots:
     void findPort();
@@ -129,7 +130,7 @@ signals:
     void connectionError();
     void portERROR();
 
-private:
+private:    
     QSerialPort* port;
     Settings settings;
     SensorData sensordata;
@@ -141,6 +142,8 @@ private:
     QTime currentTime;
     bool receivedData, countError;
     uint8_t count;
+    int16_t lastpressure;
+    int16_t error; // Difference between the last- and current pressure measurement
 };
 
 #endif // SERIALPORT_H

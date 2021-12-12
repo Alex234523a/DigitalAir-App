@@ -12,8 +12,10 @@ SerialPort::SerialPort(QObject *parent) : QObject(parent), port(new QSerialPort(
 {
     // Initiate Variables
     receivedData = false;
-    count = 0;
     countError = false;
+    count = 0;  
+    error = 0;
+    lastpressure = 0;
 
     // Connect Signals & Slots
     connect(port, &QSerialPort::readyRead, this, &SerialPort::readData);
@@ -59,6 +61,10 @@ void SerialPort::extractData()
     sensordata.tempIn      = serialDataSplit[2].toUInt(); // Innentemp.
     sensordata.accSenData  = serialDataSplit[3].toUInt(); // Beschleunigungssensor
     sensordata.signalPower = serialDataSplit[4].toUInt(); // RSSI (Funk Verbindungsstärke)
+
+    // Difference between last and current pressure measurement
+    error = serialDataSplit[0].toInt() - lastpressure;
+    lastpressure = serialDataSplit[0].toInt();
 
     emit dataReadytoGet();
 }
