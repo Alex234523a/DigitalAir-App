@@ -6,14 +6,14 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1920</width>
-    <height>1080</height>
+    <width>1366</width>
+    <height>768</height>
    </rect>
   </property>
   <property name="minimumSize">
    <size>
-    <width>1300</width>
-    <height>1080</height>
+    <width>1350</width>
+    <height>768</height>
    </size>
   </property>
   <property name="windowTitle">
@@ -42,7 +42,7 @@ QLCDNumber {
    <widget class="QLabel" name="signalStrength">
     <property name="geometry">
      <rect>
-      <x>850</x>
+      <x>480</x>
       <y>50</y>
       <width>100</width>
       <height>100</height>
@@ -55,8 +55,8 @@ QLCDNumber {
    <widget class="QLabel" name="tempE_label">
     <property name="geometry">
      <rect>
-      <x>350</x>
-      <y>310</y>
+      <x>340</x>
+      <y>190</y>
       <width>90</width>
       <height>115</height>
      </rect>
@@ -112,8 +112,8 @@ border-bottom-right-radius: 10px;</string>
     </property>
     <property name="geometry">
      <rect>
-      <x>120</x>
-      <y>260</y>
+      <x>110</x>
+      <y>140</y>
       <width>151</width>
       <height>50</height>
      </rect>
@@ -180,8 +180,8 @@ border-top-left-radius: 10px;
    <widget class="QLCDNumber" name="tempALCD">
     <property name="geometry">
      <rect>
-      <x>120</x>
-      <y>310</y>
+      <x>110</x>
+      <y>190</y>
       <width>230</width>
       <height>115</height>
      </rect>
@@ -240,8 +240,8 @@ border-bottom-left-radius: 10px;</string>
    <widget class="QLCDNumber" name="pressureLCD">
     <property name="geometry">
      <rect>
-      <x>120</x>
-      <y>550</y>
+      <x>110</x>
+      <y>410</y>
       <width>240</width>
       <height>115</height>
      </rect>
@@ -276,8 +276,8 @@ border-bottom-left-radius: 10px;</string>
    <widget class="QLabel" name="presE_label">
     <property name="geometry">
      <rect>
-      <x>360</x>
-      <y>550</y>
+      <x>350</x>
+      <y>410</y>
       <width>90</width>
       <height>115</height>
      </rect>
@@ -333,8 +333,8 @@ border-bottom-right-radius: 10px;</string>
     </property>
     <property name="geometry">
      <rect>
-      <x>120</x>
-      <y>500</y>
+      <x>110</x>
+      <y>360</y>
       <width>150</width>
       <height>50</height>
      </rect>
@@ -403,8 +403,8 @@ border-top-left-radius: 10px;</string>
     </property>
     <property name="geometry">
      <rect>
-      <x>270</x>
-      <y>260</y>
+      <x>260</x>
+      <y>140</y>
       <width>170</width>
       <height>50</height>
      </rect>
@@ -474,8 +474,8 @@ border-bottom-left-radius: 10px;
     </property>
     <property name="geometry">
      <rect>
-      <x>270</x>
-      <y>500</y>
+      <x>260</x>
+      <y>360</y>
       <width>180</width>
       <height>50</height>
      </rect>
@@ -545,8 +545,8 @@ border-bottom-left-radius: 10px;
     </property>
     <property name="geometry">
      <rect>
-      <x>120</x>
-      <y>730</y>
+      <x>110</x>
+      <y>570</y>
       <width>210</width>
       <height>50</height>
      </rect>
@@ -619,8 +619,8 @@ border-top-left-radius: 10px;
     </property>
     <property name="geometry">
      <rect>
-      <x>330</x>
-      <y>730</y>
+      <x>320</x>
+      <y>570</y>
       <width>60</width>
       <height>50</height>
      </rect>
@@ -689,8 +689,8 @@ border-style: solid;
     </property>
     <property name="geometry">
      <rect>
-      <x>390</x>
-      <y>730</y>
+      <x>380</x>
+      <y>570</y>
       <width>60</width>
       <height>50</height>
      </rect>
@@ -762,8 +762,8 @@ border-bottom-right-radius: 10px;</string>
     </property>
     <property name="geometry">
      <rect>
-      <x>120</x>
-      <y>140</y>
+      <x>110</x>
+      <y>50</y>
       <width>330</width>
       <height>50</height>
      </rect>
