@@ -47,7 +47,6 @@ private:
     Ui::MainWindow *ui;
     SerialPort *outgoing;
     QAction *rebootAct;
-    void createActions();
     void setSignalStrengthImg(uint8_t);
     uint8_t countPortErrors;
     uint16_t timeLeft;

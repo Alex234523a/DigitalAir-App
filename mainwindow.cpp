@@ -11,7 +11,7 @@
 
 // To do:
 // Innentemepratur zu hoch Warning ausgeben
-// Is moving hinzufügen Label?
+// Kommentare hinterlegen
 // Status informationen
 // Design entsprechend auslegen
 
@@ -30,10 +30,6 @@ MainWindow::MainWindow(QWidget *parent)
     connect(outgoing, &SerialPort::dataReadytoGet, this, &MainWindow::updateLCD);
     connect(outgoing, &SerialPort::connectionError, this, &MainWindow::connectError);
     connect(outgoing, &SerialPort::portERROR, this, &MainWindow::portError);
-
-    //this->setWindowState(Qt::WindowMaximized);
-
-    createActions();
 
     ui->pressureLCD->display("--");
     ui->tempALCD->display("--");
@@ -58,13 +54,24 @@ void MainWindow::updateLCD()
     ui->pressureLCD->display(outgoing->getPressure());
     ui->tempALCD->display(outgoing->getTempOut());
     setSignalStrengthImg(outgoing->getSignalPower());
-    if (outgoing->getDiff() < 0) {
+    if (outgoing->getaccSenData() == 0) {
+        ui->isMoving_Label->setStyleSheet("background-color:green; font: bold; border-width: 3px; border-color:white; border-style: solid; border-radius: 10px;");
+        ui->isMoving_Label->setText("In Bewegung");
+    } else {
+        ui->isMoving_Label->setStyleSheet("background-color:red; font: bold; border-width: 3px; border-color:white; border-style: solid; border-radius: 10px;");
+        ui->isMoving_Label->setText("Nicht in Bewegung");
+    }
+    if (timeLeft) { // if timLeft is != 0
+        timeLeft = (VOLUME_OF_BOTTLE_LITRES * outgoing->getPressure()) / FAKTOR;
+        ui->timeLeftN_label->setNum(timeLeft);
+        return;
+    }
+    if (outgoing->getDiff() < 0) { // This will be executed bfore the if statement above
         timeLeft = (VOLUME_OF_BOTTLE_LITRES * outgoing->getPressure()) / FAKTOR;
         ui->timeLeftN_label->setNum(timeLeft);
         // Typ not right from uint16_t to int
-        // This will be executed once!
+
     }
-    // Else to calculate time left
 }
 
 void MainWindow::connectError()
@@ -83,11 +90,6 @@ void MainWindow::slotReboot()
 void MainWindow::portError()
 {
     statusBar()->showMessage(tr("Port-Error: Bitte starten sie die Basestation sowie die App neu."));
-}
-
-void MainWindow::createActions()
-{
-    //
 }
 
 void MainWindow::setSignalStrengthImg(uint8_t signalPower)
